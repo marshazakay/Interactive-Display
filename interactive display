@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weight on Planets Calculator</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('planets-background.jpg'); /* Replace 'planets-background.jpg' with your image */
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        text-align: center;
+        padding-top: 50px;
+    }
+    h1 {
+        margin-bottom: 20px;
+    }
+    #weight-form {
+        display: inline-block;
+        background-color: black;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    input[type="text"] {
+        width: 100px;
+        padding: 8px;
+        margin: 5px;
+    }
+    input[type="button"] {
+        padding: 8px 20px;
+        cursor: pointer;
+        margin-top: 10px;
+        background-color: pink;
+        border: none;
+        color: white;
+        border-radius: 5px;
+    }
+    #result {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Weight on Planets Calculator</h1>
+
+<div id="weight-form">
+  <label for="weight">Weight on Earth (kg):</label>
+  <input type="text" id="weight" placeholder="Enter weight"><br>
+  <label for="planet">Select a Planet:</label>
+  <select id="planet">
+    <option value="mercury">Mercury</option>
+    <option value="venus">Venus</option>
+    <option value="earth">Earth</option>
+    <option value="mars">Mars</option>
+    <option value="jupiter">Jupiter</option>
+    <option value="saturn">Saturn</option>
+    <option value="uranus">Uranus</option>
+    <option value="neptune">Neptune</option>
+  </select><br>
+  <input type="button" value="Calculate Weight" onclick="calculateWeight()"><br>
+  <div id="result"></div>
+  <button onclick="resetForm()">Reset</button>
+</div>
+
+<script>
+    function calculateWeight() {
+        var weightEarth = parseFloat(document.getElementById("weight").value);
+        var planet = document.getElementById("planet").value;
+        var gravity;
+
+        switch (planet) {
+            case "mercury":
+                gravity = 3.7;
+                break;
+            case "venus":
+                gravity = 8.87;
+                break;
+            case "earth":
+                gravity = 9.81;
+                break;
+            case "mars":
+                gravity = 3.711;
+                break;
+            case "jupiter":
+                gravity = 24.79;
+                break;
+            case "saturn":
+                gravity = 10.44;
+                break;
+            case "uranus":
+                gravity = 8.69;
+                break;
+            case "neptune":
+                gravity = 11.15;
+                break;
+            default:
+                gravity = 9.81;
+        }
+
+        var weightPlanet = (weightEarth * gravity) / 9.81;
+        document.getElementById("result").innerHTML = "Weight on " + planet.charAt(0).toUpperCase() + planet.slice(1) + ": " + weightPlanet.toFixed(2) + " kg";
+    }
+
+    function resetForm() {
+        document.getElementById("weight").value = "";
+        document.getElementById("planet").value = "earth";
+        document.getElementById("result").innerHTML = "";
+    }
+</script>
+
+</body>
+</html>
